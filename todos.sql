@@ -25,3 +25,9 @@ insert into todos (todo, done, user_email) values ('Quality-focused asymmetric f
 insert into todos (todo, done, user_email) values ('Automated encompassing encoding', false, 'phumes1@wikia.com');
 insert into todos (todo, done, user_email) values ('Down-sized intermediate frame', false, 'phumes1@wikia.com');
 insert into todos (todo, done, user_email) values ('Intuitive intermediate attitude', true, 'phumes1@wikia.com');
+insert into todos (todo, done, user_email) values ('Mandatory even-keeled moratorium', false, 'admin');
+insert into todos (todo, done, user_email) values ('Mandatory intangible Graphical User Interface', true, 'admin');
+insert into todos (todo, done, user_email) values ('Quality-focused asymmetric flexibility', true, 'admin');
+insert into todos (todo, done, user_email) values ('Automated encompassing encoding', false, 'admin');
+insert into todos (todo, done, user_email) values ('Down-sized intermediate frame', false, 'admin');
+insert into todos (todo, done, user_email) values ('Intuitive intermediate attitude', true, 'admin');

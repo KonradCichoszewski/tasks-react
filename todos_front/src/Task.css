@@ -1,0 +1,36 @@
+.task {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.text {
+    background: #fff;
+    padding: 10px;
+    width: fit-content;
+    border-left: 4px solid #000;
+    cursor: pointer;
+}
+
+.true {
+    background-color: #33ff0066;
+    text-decoration: line-through;
+}
+
+.x {
+    display: inline;
+    height: 1em;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.text:hover + .x {
+    opacity: 1;
+}
+
+.x:hover {
+    opacity: 1;
+}
+

@@ -1,0 +1,36 @@
+.login {
+    width: 30vw;
+}
+
+.header {
+    background-color: #222;
+    color: #fff;
+    height: 70px;
+    display: inline-flex;
+    align-items: flex-end;
+    font-size: 40px;
+    padding: 0 60px 0 15px;
+}
+
+.tile {
+    background-color: #22222210;
+    width: 100%;
+    min-height: 70px;
+}
+
+input {
+    outline: none;
+    border: none;
+    margin: 20px 0 0 20px;
+    padding: 10px;
+    border-left: 4px solid #222;
+    width: 18vw;
+}
+
+button {
+    margin: 20px;
+    border: none;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+}

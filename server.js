@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const { Pool } = pg;
 const app = express();
+
 app.use(express.json());
 
 const db = new Pool({
@@ -14,26 +15,50 @@ const db = new Pool({
     port: 5432
 })
 
-app.get("/todos", async (req, res) => {
-    let decoded = jwt.verify(req.body.token, "secret", (err, decoded) => {
-        if (err) res.status(403).json(err.message);
-        return decoded;
+function checkToken(token) {
+    let result = jwt.verify(token, "secret", (err, decoded) => {
+        if (err) { res.status(500).json(err.message) } else return decoded;
     });
+    return result;
+}
+
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+  });
+
+app.get("/todos", async (req, res) => {
+    let decoded = checkToken(req.headers.authorization);
     let result = await db.query(`SELECT * FROM todos WHERE user_email = $1`, [decoded.email]);
     res.json(result.rows);
 })
 
-app.post("/todos", async (req, res) => {
-    let decoded = jwt.verify(req.body.token, "secret", (err, decoded) => {
-        if (err) res.status(403).json(err.message);
-        return decoded;
-    });
+app.post("/todos", (req, res) => {
+    let decoded = checkToken(req.headers.authorization);
 
     req.body.todos.forEach(todo => {
         db.query(`INSERT INTO todos (todo, done, user_email) VALUES ($1, false, $2)`, [todo, decoded.email])
     });
 
-    res.status(201).json("Success!");
+    res.status(201).send("success");
+})
+
+app.patch("/todos/:id", (req, res) => {
+    checkToken(req.headers.authorization);
+    
+    db.query(`UPDATE todos SET done = NOT done WHERE id = $1`, [req.params.id]);
+
+    res.status(200).send('success');
+})
+
+app.delete("/todos/:id", (req, res) => {
+    checkToken(req.headers.authorization);
+
+    db.query(`DELETE FROM todos WHERE id = $1`, [req.params.id]);
+
+    res.status(200).send('success');
 })
 
 app.post("/login", async (req, res) => {
@@ -43,14 +68,6 @@ app.post("/login", async (req, res) => {
         let token = jwt.sign({name: result.rows[0].name, email: result.rows[0].email}, "secret", { expiresIn: '1800s'});
         res.json({token: token});
     } else res.sendStatus(404);
-
-})
-
-app.get("/test", async (req, res) => {
-    // let result = await db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [req.body.email, req.body.password]);
-    let result = await db.query(`SELECT * FROM users`);
-    console.log('HAPPY');
-    res.json(result);
 })
 
 app.listen(3000, () => {

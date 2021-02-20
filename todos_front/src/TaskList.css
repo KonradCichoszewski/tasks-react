@@ -1,0 +1,21 @@
+.task_list {
+    flex-grow: 1;
+    margin-right: 40px;
+}
+
+.header {
+    background-color: #222;
+    color: #fff;
+    height: 70px;
+    display: inline-flex;
+    align-items: flex-end;
+    font-size: 40px;
+    padding: 0 60px 0 15px;
+}
+
+.tile {
+    background-color: #22222210;
+    width: 100%;
+    min-height: 70px;
+    padding: 10px;
+}
