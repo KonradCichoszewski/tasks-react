@@ -61,6 +61,15 @@ app.delete("/todos/:id", (req, res) => {
     res.status(200).send('success');
 })
 
+app.post("/users", async (req, res) => {
+    let result = await db.query(`SELECT * FROM users WHERE email = $1`, [req.body.email]);
+
+    if (result.rows[0] == undefined) {
+        await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`, [req.body.name, req.body.email, req.body.password]);
+        res.status(201).send('user created');
+    } else res.status(409).send("An account with the provided email address already exists");
+})
+
 app.post("/login", async (req, res) => {
     let result = await db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [req.body.email, req.body.password]);
 
