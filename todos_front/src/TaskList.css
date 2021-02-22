@@ -1,9 +1,9 @@
-.task_list {
+.task_list{
     flex-grow: 1;
     margin-right: 40px;
 }
 
-.header {
+.task_list_header {
     background-color: #222;
     color: #fff;
     height: 70px;
@@ -13,7 +13,7 @@
     padding: 0 60px 0 15px;
 }
 
-.tile {
+.task_list_tile {
     background-color: #22222210;
     width: 100%;
     min-height: 70px;

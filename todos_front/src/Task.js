@@ -30,8 +30,8 @@ class Task extends React.Component {
     render() {
         return (
             <div className="task">
-                <p className={`text ${this.state.done.toString()}`} onClick={() => this.toggleDone(this.props.todo.id)}>{this.props.todo.todo}</p>
-                <img src="http://www.clker.com/cliparts/D/0/R/b/X/W/red-cross-md.png" className="x" onClick={() => this.props.delete(this.props.todo.id)}/>
+                <p className={`task_text task_${this.state.done.toString()}`} onClick={() => this.toggleDone(this.props.todo.id)}>{this.props.todo.todo}</p>
+                <img src="http://www.clker.com/cliparts/D/0/R/b/X/W/red-cross-md.png" className="task_x" onClick={() => this.props.delete(this.props.todo.id)}/>
             </div>
         )
     }

@@ -4,7 +4,7 @@
     padding: 5px;
 }
 
-.text {
+.task_text {
     background: #fff;
     padding: 10px;
     width: fit-content;
@@ -12,12 +12,12 @@
     cursor: pointer;
 }
 
-.true {
+.task_true {
     background-color: #33ff0066;
     text-decoration: line-through;
 }
 
-.x {
+.task_x {
     display: inline;
     height: 1em;
     padding-left: 20px;
@@ -26,11 +26,11 @@
     cursor: pointer;
 }
 
-.text:hover + .x {
+.task_text:hover + .task_x {
     opacity: 1;
 }
 
-.x:hover {
+.task_x:hover {
     opacity: 1;
 }
 

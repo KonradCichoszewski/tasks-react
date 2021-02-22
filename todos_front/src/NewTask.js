@@ -27,7 +27,7 @@ class NewTask extends React.Component {
     render() {
         return (
             <div className="new_task">
-                <input type="text" value={this.state.text} placeholder="Add new task..." onChange={this.handleChange} onKeyUp={this.tryAdding}/>
+                <input className="new_task_input" type="text" value={this.state.text} placeholder="Add new task..." onChange={this.handleChange} onKeyUp={this.tryAdding}/>
             </div>
         )
     }

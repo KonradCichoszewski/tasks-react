@@ -16,8 +16,8 @@ class TaskList extends React.Component {
 
         return (
             <div className="task_list">
-                <div className="header">My tasks</div>
-                <div className="tile">
+                <div className="task_list_header">My tasks</div>
+                <div className="task_list_tile">
                     <NewTask addTodo={this.props.addTodo}/>
                     {todos}
                 </div>

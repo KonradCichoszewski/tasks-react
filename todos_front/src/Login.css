@@ -2,7 +2,7 @@
     width: 30vw;
 }
 
-.header {
+.login_header {
     background-color: #222;
     color: #fff;
     height: 70px;
@@ -12,13 +12,13 @@
     padding: 0 60px 0 15px;
 }
 
-.tile {
+.login_tile {
     background-color: #22222210;
     width: 100%;
     min-height: 70px;
 }
 
-input {
+.login_input {
     outline: none;
     border: none;
     margin: 20px 0 0 20px;
@@ -27,7 +27,7 @@ input {
     width: 18vw;
 }
 
-button {
+.login_button {
     margin: 20px;
     border: none;
     padding: 10px;

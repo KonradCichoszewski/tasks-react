@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react'; 
 import TaskList from './TaskList.js';
 import Login from './Login.js';
+import SignUp from './SignUp';
 import axios from 'axios';
 
 class App extends React.Component{
@@ -68,7 +69,10 @@ class App extends React.Component{
         </div>
         <div className="content">
           <TaskList todos={this.state.todos} token={this.state.token} delete={this.delete} addTodo={this.addTodo}/>
-          <Login login={this.login} loggedIn={this.state.loggedIn} logout={this.logout}/>
+          <div className="logging_section">
+            <Login login={this.login} loggedIn={this.state.loggedIn} logout={this.logout}/>
+            <SignUp loggedIn={this.state.loggedIn} />
+          </div>
         </div>
       </div>
     );
