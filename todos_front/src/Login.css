@@ -10,12 +10,14 @@
     align-items: flex-end;
     font-size: 40px;
     padding: 0 60px 0 15px;
+
 }
 
 .login_tile {
     background-color: #22222210;
     width: 100%;
     min-height: 70px;
+    box-shadow: 6px 8px 3px -1px #00000033;
 }
 
 .login_input {

@@ -24,10 +24,17 @@ class NewTask extends React.Component {
         }
     }
 
+
     render() {
+        let optionalMessage = <p></p>;
+        if (!this.props.loggedIn) {
+            optionalMessage = <p className="new_task_message">Log in or sign up in order to add new tasks</p>
+        }
+
         return (
             <div className="new_task">
-                <input className="new_task_input" type="text" value={this.state.text} placeholder="Add new task..." onChange={this.handleChange} onKeyUp={this.tryAdding}/>
+                <input className="new_task_input" type="text" disabled={!this.props.loggedIn} value={this.state.text} placeholder="Add new task..." onChange={this.handleChange} onKeyUp={this.tryAdding}/>
+                {optionalMessage}
             </div>
         )
     }

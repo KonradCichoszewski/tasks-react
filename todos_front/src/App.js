@@ -68,7 +68,7 @@ class App extends React.Component{
           <p className="logo">.Tasks</p>
         </div>
         <div className="content">
-          <TaskList todos={this.state.todos} token={this.state.token} delete={this.delete} addTodo={this.addTodo}/>
+          <TaskList todos={this.state.todos} token={this.state.token} delete={this.delete} addTodo={this.addTodo} loggedIn={this.state.loggedIn}/>
           <div className="logging_section">
             <Login login={this.login} loggedIn={this.state.loggedIn} logout={this.logout}/>
             <SignUp loggedIn={this.state.loggedIn} login={this.login}/>

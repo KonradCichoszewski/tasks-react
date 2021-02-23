@@ -9,3 +9,8 @@
     border-left: 4px solid #222;
     width: 18vw;
 }
+
+.new_task_message {
+    color:rgb(255, 68, 68);
+    padding-top: 20px ;
+}
