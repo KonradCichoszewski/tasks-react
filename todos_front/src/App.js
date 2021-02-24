@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react'; 
-import TaskList from './TaskList.js';
-import Login from './Login.js';
-import SignUp from './SignUp';
+import TaskList from './components/TaskList.js';
+import Login from './components/Login.js';
+import SignUp from './components/SignUp';
 import axios from 'axios';
 
 class App extends React.Component{

@@ -1,0 +1,6 @@
+CREATE TABLE lists(
+    id SERIAL PRIMARY KEY NOT NULL,
+    title VARCHAR(60) NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT NOW(),
+    user_email VARCHAR(70) REFERENCES users(email) NOT NULL
+);
