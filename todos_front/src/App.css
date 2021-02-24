@@ -22,7 +22,20 @@
   padding-left: 30px;
 }
 
-.content {
+.side_section {
+  width: 30vw;
   padding: 40px;
+}
+
+.logged {
+  background-color: rgb(77, 77, 77); 
+}
+
+.not_logged {
+  background-color: rgb(77, 77, 77); 
+}
+
+.content {
   display: flex;
+  min-height: calc(100vh - 80px);
 }

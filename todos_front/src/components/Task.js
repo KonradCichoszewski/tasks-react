@@ -7,14 +7,14 @@ class Task extends React.Component {
         super(props);
 
         this.state = {
-            done: this.props.todo.done
+            done: this.props.task.done
         }
 
         this.toggleDone = this.toggleDone.bind(this);
     }
 
-    toggleDone(id) {
-        axios.patch("http://localhost:3000/todos/" + id, {}, {
+    toggleDone(task_id) {
+        axios.patch("http://localhost:3000/tasks/" + task_id, {}, {
             headers: {
                 authorization: this.props.token
             }
@@ -30,8 +30,8 @@ class Task extends React.Component {
     render() {
         return (
             <div className="task">
-                <p className={`task_text task_${this.state.done.toString()}`} onClick={() => this.toggleDone(this.props.todo.id)}>{this.props.todo.todo}</p>
-                <img src="http://www.clker.com/cliparts/D/0/R/b/X/W/red-cross-md.png" className="task_x" onClick={() => this.props.delete(this.props.todo.id)}/>
+                <p className={`task_text task_${this.state.done.toString()}`} onClick={() => this.toggleDone(this.props.task.id)}>{this.props.task.task}</p>
+                <img src="http://www.clker.com/cliparts/D/0/R/b/X/W/red-cross-md.png" className="task_x" onClick={() => this.props.delete(this.props.task.id)}/>
             </div>
         )
     }

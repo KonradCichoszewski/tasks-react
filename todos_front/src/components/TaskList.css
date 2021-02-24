@@ -1,6 +1,6 @@
 .task_list{
     flex-grow: 1;
-    margin-right: 40px;
+    margin: 40px;
 }
 
 .task_list_header {

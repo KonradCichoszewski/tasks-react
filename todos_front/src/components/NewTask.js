@@ -19,7 +19,7 @@ class NewTask extends React.Component {
 
     tryAdding(e) {
         if (e.keyCode == 13 && this.state.text.length) {
-        this.props.addTodo(e.target.value);
+        this.props.addTask(e.target.value);
         this.setState({ text: ""});
         }
     }

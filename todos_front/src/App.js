@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react'; 
 import TaskList from './components/TaskList.js';
 import Login from './components/Login.js';
+import Lists from './components/Lists';
 import SignUp from './components/SignUp';
 import axios from 'axios';
 
@@ -11,18 +12,20 @@ class App extends React.Component{
     this.state = {
       loggedIn: false,
       token: "",
-      todos: []
+      lists: [],
+      tasks: []
     }
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.delete = this.delete.bind(this);
-    this.fetchTodos = this.fetchTodos.bind(this);
-    this.addTodo = this.addTodo.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.fetchLists = this.fetchLists.bind(this);
+    this.fetchTasks = this.fetchTasks.bind(this);
+    this.addTask = this.addTask.bind(this);
   }
 
-  fetchTodos() {
-    axios.get("http://localhost:3000/todos", {
+  fetchTasks(list_id) {
+    axios.get("http://localhost:3000/tasks/" + list_id, {
       headers: {
         authorization: this.state.token
       }
@@ -31,48 +34,68 @@ class App extends React.Component{
     });
   }
 
-  addTodo(text) {
-    axios.post("http://localhost:3000/todos", { todos: [text]}, {
+  addTask(text, list_id) {
+    axios.post("http://localhost:3000/tasks/" + list_id, { tasks: [text]}, {
       headers: {
         authorization: this.state.token
       }
     }).then(res => {
       if (res.status == 201) {
-        this.fetchTodos()
+        this.fetchTasks()
       }
     }).catch(err => console.error(err.message));
   }
 
+  fetchLists() {
+    axios.get("http://localhost:3000/lists", {
+      headers: {
+        authorization: this.state.token
+      }
+    }).then(res => {
+      this.setState({lists: res.data.reverse()})
+    });
+  }
+
   login(token) {
     this.setState({loggedIn: true, token: token});
-    this.fetchTodos();
+    this.fetchLists();
   }
 
   logout() {
     this.setState({loggedIn: false, token: "", todos: []})
   }
 
-  delete(id) {
-    axios.delete("http://localhost:3000/todos/" + id, { headers: { authorization: this.state.token }
+  deleteTask(task_id) {
+    axios.delete("http://localhost:3000/tasks/" + task_id, { headers: { authorization: this.state.token }
     }).then(res => {
       if (res.status = 200) {
-        this.fetchTodos();
+        this.fetchTasks();
       }
     }).catch(err => console.error(err.message));
   }
 
   render() {
+    let side_section;
+
+    if (!this.state.loggedIn) {
+      side_section =
+        <div className="side_section not_logged">
+          <Login login={this.login} loggedIn={this.state.loggedIn} logout={this.logout}/>
+          <SignUp loggedIn={this.state.loggedIn} login={this.login}/>
+        </div>
+    } else {
+      side_section = <div className="side_section logged"><Lists lists={this.state.lists}/></div>
+    }
+
     return (
       <div className="app">
         <div className="navbar">
           <p className="logo">.Tasks</p>
+          <p onClick={this.logout}>Log out</p>
         </div>
         <div className="content">
-          <TaskList todos={this.state.todos} token={this.state.token} delete={this.delete} addTodo={this.addTodo} loggedIn={this.state.loggedIn}/>
-          <div className="logging_section">
-            <Login login={this.login} loggedIn={this.state.loggedIn} logout={this.logout}/>
-            <SignUp loggedIn={this.state.loggedIn} login={this.login}/>
-          </div>
+          <TaskList tasks={this.state.tasks} token={this.state.token} delete={this.delete} addTask={this.addTask} loggedIn={this.state.loggedIn}/>
+          {side_section}
         </div>
       </div>
     );

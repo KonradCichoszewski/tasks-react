@@ -46,11 +46,9 @@ class Login extends React.Component{
             <div className="login">
                 <div className="login_header">Log in</div>
                 <div className="login_tile">
-                    <div className="login_form">
                         <input className="login_input" type="text" placeholder="email" value={this.state.email} onChange={this.setEmail.bind(this)}/><br />
                         <input className="login_input" type="password" placeholder="password" value={this.state.password} onChange={this.setPassword.bind(this)}/><br/>
                         <button className="login_button" onClick={this.handleLogin.bind(this)}>Submit</button>
-                    </div>
                 </div>
             </div>
             )

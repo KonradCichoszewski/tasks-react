@@ -1,7 +1,3 @@
-.login {
-    width: 30vw;
-}
-
 .login_header {
     background-color: #222;
     color: #fff;
@@ -14,8 +10,7 @@
 }
 
 .login_tile {
-    background-color: #22222210;
-    width: 100%;
+    background-color: #ccc;
     min-height: 70px;
     box-shadow: 6px 8px 3px -1px #00000033;
 }
