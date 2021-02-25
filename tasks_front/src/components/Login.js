@@ -1,6 +1,8 @@
-import axios from 'axios';
 import React from 'react';
+import { connect } from 'react-redux';
+import { login } from '../redux/actions/authActions';
 import './Login.css';
+
 
 class Login extends React.Component{
 
@@ -14,18 +16,9 @@ class Login extends React.Component{
         this.logout = this.logout.bind(this);
     }
 
-    handleLogin(e) {
-        e.preventDefault();
-        
-        axios.post("http://localhost:3000/login",{
-            email: this.state.email,
-            password: this.state.password
-        }).then(res => {
-            this.props.login(res.data.token);
-            this.setState({email: "", password: ""})
-        }).catch(err => {
-            console.error(err.message);
-        })
+    handleLogin = () => {
+        this.props.login(this.state.email, this.state.password);
+        this.setState({email: "", password: ""});
     };
 
     logout() {
@@ -65,4 +58,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default connect(null, { login })(Login);

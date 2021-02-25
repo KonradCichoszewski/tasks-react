@@ -5,6 +5,7 @@ import Login from './components/Login.js';
 import Lists from './components/Lists';
 import SignUp from './components/SignUp';
 import axios from 'axios';
+import { connect } from "react-redux";
 
 class App extends React.Component{
   constructor(props){
@@ -77,7 +78,7 @@ class App extends React.Component{
   render() {
     let side_section;
 
-    if (!this.state.loggedIn) {
+    if (!this.props.loggedIn) {
       side_section =
         <div className="side_section not_logged">
           <Login login={this.login} loggedIn={this.state.loggedIn} logout={this.logout}/>
@@ -102,4 +103,6 @@ class App extends React.Component{
   }
 }
 
-export default App;
+const mapStateToProps = state => { return {loggedIn: state.auth.loggedIn} };
+
+export default connect(mapStateToProps)(App);
