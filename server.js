@@ -39,11 +39,7 @@ app.get("/tasks/:list_id", async (req, res) => {
 
 app.post("/tasks/:list_id", (req, res) => {
     checkToken(req.headers.authorization);
-
-    req.body.tasks.forEach(task => {
-        db.query(`INSERT INTO tasks (task, done, list) VALUES ($1, false, $2)`, [task, req.params.list_id])
-    });
-
+    db.query(`INSERT INTO tasks (task, done, list) VALUES ($1, false, $2)`, [req.body.task, req.params.list_id])
     res.status(201).send("success");
 })
 
@@ -104,7 +100,7 @@ app.post("/users", async (req, res) => {
     } else res.status(409).send("An account with the provided email address already exists");
 })
 
-app.post("/login", async (req, res) => {
+app.get("/login", async (req, res) => {
     let result = await db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [req.body.email, req.body.password]);
 
     if (result.rows[0] !== undefined) {

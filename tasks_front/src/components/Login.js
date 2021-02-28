@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../redux/actions/authActions';
+import { tryLogin } from '../redux/actions/authActions';
 import './Login.css';
 
 
@@ -17,7 +17,7 @@ class Login extends React.Component{
     }
 
     handleLogin = () => {
-        this.props.login(this.state.email, this.state.password);
+        this.props.tryLogin(this.state.email, this.state.password);
         this.setState({email: "", password: ""});
     };
 
@@ -58,4 +58,4 @@ class Login extends React.Component{
     }
 }
 
-export default connect(null, { login })(Login);
+export default connect(null, { tryLogin })(Login);

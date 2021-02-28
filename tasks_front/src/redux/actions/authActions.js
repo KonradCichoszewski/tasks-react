@@ -9,7 +9,7 @@ export const login = () => ({
 })
 
 export const loginSuccess = (token) => ({
-    type: LOGIN_SUCSESS,
+    type: LOGIN_SUCCESS,
     payload: token
 })
 
@@ -20,11 +20,11 @@ export const loginFailure = () => ({
 export function tryLogin(email, password) {
     return async (dispatch) => {
         dispatch(login());
-        await axios.post('hhtp://localhost:3000/login', {
+        await axios.post('http://localhost:3000/login', {
             email, password
         }).then(res => {
             dispatch(loginSuccess(res.data.token));
-        }).catch(dispatch(loginFailure));
+        }).catch(err => dispatch(loginFailure()));
     }
 }
 

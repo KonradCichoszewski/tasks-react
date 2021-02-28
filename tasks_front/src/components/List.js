@@ -1,16 +1,10 @@
-import './Lists.css';
+import './List.css';
 import React from 'react';
 
-class Lists extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <div>{this.props.list}</div>
-        )
-    }
+function List(props) {
+    return (
+        <div className="list">{props.list.title}</div>
+    )
 }
 
-export default Lists;
+export default List;

@@ -2,6 +2,7 @@ import './TaskList.css';
 import React from 'react';
 import Task from './Task.js';
 import NewTask from './NewTask.js';
+import { connect } from 'react-redux';
 
 class TaskList extends React.Component {
     constructor(props) {
@@ -26,4 +27,10 @@ class TaskList extends React.Component {
     }
 }
 
-export default TaskList;
+const mapStateToProps = state => {
+    return {
+        tasks: state.tasks.tasks
+    }
+}
+
+export default connect(mapStateToProps, {})(TaskList);
