@@ -1,12 +1,13 @@
 .lists_tile {
-    background-color: #ccc;
-    min-height: 70px;
-    box-shadow: 6px 8px 3px -1px #00000033;
+  background-color: #eee;
+  min-height: 70px;
+  box-shadow: 6px 8px 3px -1px #00000033;
+  border-radius: 0 20px 20px 20px;
 }
 
 .lists_add {
-    background: inherit;
-    border: none;
-    outline: none;
-    padding: 15px 20px;
+  background: inherit;
+  border: none;
+  outline: none;
+  padding: 15px 20px;
 }

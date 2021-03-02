@@ -4,35 +4,42 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 .app {
   min-height: 100vh;
-  background: #eee;
+  background: #fff;
 }
 
 .navbar {
-  background: #222;
+  background: #000;
   height: 80px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   color: white;
   font-size: 50px;
   padding-left: 30px;
+  align-self: flex-end;
+}
+
+.logout {
+  color: white;
+  border: 2px solid white;
+  border-radius: 7px;
+  padding: 5px;
+  margin-right: 40px;
+  cursor: pointer;
 }
 
 .side_section {
   width: 30vw;
   padding: 40px;
-}
-
-.logged {
-  background-color: rgb(77, 77, 77); 
-}
-
-.not_logged {
-  background-color: rgb(77, 77, 77); 
 }
 
 .content {

@@ -1,36 +1,35 @@
 .task {
-    display: flex;
-    align-items: center;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 
 .task_text {
-    background: #fff;
-    padding: 10px;
-    width: fit-content;
-    border-left: 4px solid #000;
-    cursor: pointer;
+  background: #fff;
+  padding: 10px;
+  width: fit-content;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .task_true {
-    background-color: #33ff0066;
-    text-decoration: line-through;
+  background-color: #33ff0066;
+  text-decoration: line-through;
 }
 
 .task_x {
-    display: inline;
-    height: 1em;
-    padding-left: 20px;
-    padding-right: 20px;
-    opacity: 0;
-    cursor: pointer;
+  display: inline;
+  height: 1em;
+  padding-left: 20px;
+  padding-right: 20px;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .task_text:hover + .task_x {
-    opacity: 1;
+  opacity: 1;
 }
 
 .task_x:hover {
-    opacity: 1;
+  opacity: 1;
 }
-

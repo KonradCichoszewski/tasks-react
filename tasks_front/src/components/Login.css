@@ -1,33 +1,34 @@
 .login_header {
-    background-color: #222;
-    color: #fff;
-    height: 70px;
-    display: inline-flex;
-    align-items: flex-end;
-    font-size: 40px;
-    padding: 0 60px 0 15px;
-
+  background-color: #000;
+  color: #fff;
+  height: 70px;
+  display: inline-flex;
+  align-items: flex-end;
+  font-size: 40px;
+  padding: 0 60px 0 15px;
+  border-radius: 20px 20px 0 0;
 }
 
 .login_tile {
-    background-color: #ccc;
-    min-height: 70px;
-    box-shadow: 6px 8px 3px -1px #00000033;
+  background-color: #eee;
+  min-height: 70px;
+  box-shadow: 6px 8px 3px -1px #00000033;
+  border-radius: 0 20px 20px 20px;
 }
 
 .login_input {
-    outline: none;
-    border: none;
-    margin: 20px 0 0 20px;
-    padding: 10px;
-    border-left: 4px solid #222;
-    width: 18vw;
+  outline: none;
+  border: none;
+  margin: 20px 0 0 20px;
+  padding: 10px;
+  border-left: 4px solid #222;
+  width: 18vw;
 }
 
 .login_button {
-    margin: 20px;
-    border: none;
-    padding: 10px;
-    background: #222;
-    color: #fff;
+  margin: 20px;
+  border: none;
+  padding: 10px;
+  background: #000;
+  color: #fff;
 }
