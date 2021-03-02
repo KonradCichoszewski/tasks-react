@@ -43,8 +43,8 @@ class TaskList extends React.Component {
 
     let title = () => {
       if (this.props.currentList) {
-        return this.props.currentList.title;
-      } else return "My tasks";
+        return this.props.currentList.title.toUpperCase();
+      } else return "MY TASKS";
     };
 
     return (

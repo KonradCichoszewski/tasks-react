@@ -1,3 +1,9 @@
 .list {
-    padding: 15px 20px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition-duration: 0.04s;
+}
+
+.list:hover {
+  background-color: #ddd;
 }

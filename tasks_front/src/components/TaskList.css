@@ -4,16 +4,12 @@
 }
 
 .task_list_header {
-  background-color: #eee;
   color: #000;
   height: 70px;
-  display: flex;
+  display: inline-flex;
   align-items: flex-end;
   font-size: 40px;
   padding: 0 60px 0 15px;
-  border: 6px solid #eee;
-  border-bottom: none;
-  border-radius: 20px 20px 0 0;
 }
 
 .task_list_tile {
@@ -22,7 +18,7 @@
   min-height: 70px;
   padding: 10px;
   box-shadow: 6px 8px 3px -1px #00000033;
-  border-radius: 0 20px 20px 20px;
+  border-radius: 10px;
 }
 
 .new_task {
