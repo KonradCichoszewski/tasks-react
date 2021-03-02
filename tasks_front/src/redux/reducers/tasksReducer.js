@@ -1,4 +1,5 @@
 import * as actions from '../actions/tasksActions';
+import { LOGOUT } from '../actions/authActions';
 
 const initialState = {
     tasks: [],
@@ -24,6 +25,8 @@ const tasksReducer = ( state = initialState, action ) => {
             loading: false,
             hasErrors: true
         }
+        case LOGOUT: return state;
+        
         default: return state;
     }
 }

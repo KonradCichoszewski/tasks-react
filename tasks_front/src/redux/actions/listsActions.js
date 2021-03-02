@@ -40,7 +40,6 @@ export function tryGettingLists(token) {
             }
         }).then(res => {
             dispatch(getListsSuccess(res.data));
-            dispatch(setCurrentList(res.data[res.data.length-1].id))
         }).catch(err => dispatch(getListsFailure()));
     }
 }

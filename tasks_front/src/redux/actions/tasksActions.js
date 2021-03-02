@@ -13,9 +13,9 @@ export const getTasks = () => ({
     type: GET_TASKS,
 })
 
-export const getTasksSuccess = (lists) => ({
+export const getTasksSuccess = (tasks) => ({
     type: GET_TASKS_SUCCESS,
-    payload: lists
+    payload: tasks
 })
 
 export const getTasksFailure = () => ({
@@ -46,15 +46,25 @@ export const addTaskFailure = () => ({
     type: ADD_TASK_FAILURE,
 })
 
-export function tryAddingTask(token, list_id) {
+export function tryAddingTask(token, task, list_id) {
     return async (dispatch) => {
         dispatch(addTask());
-        await axios.post('http://localhost:3000/tasks/' + list_id, {},{
+        await axios.post('http://localhost:3000/tasks/' + list_id, {
+            task: task
+        },{
             headers: {
                 authorization: token
             }
         }).then(res => {
-            dispatch(getTasksSuccess(res.data));
-        }).catch(err => dispatch(getTasksFailure()));
+            dispatch(addTaskSuccess(res.data));
+        }).then(() => {
+            axios.get('http://localhost:3000/tasks/' + list_id, {
+            headers: {
+                authorization: token
+            }
+            }).then(res => {
+                dispatch(getTasksSuccess(res.data));
+            }).catch(err => dispatch(getTasksFailure()));
+        }).catch(err => dispatch(addTaskFailure()));
     }
 }

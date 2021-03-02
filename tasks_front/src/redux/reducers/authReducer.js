@@ -25,6 +25,12 @@ const loginReducer = ( state = initialState, action ) => {
                 loading: false,
                 hasErrors: true
             }
+        case actions.LOGOUT:
+            return {
+                ...state,
+                token: null,
+                loggedIn: false
+            }
         default: return state;
     }
 }

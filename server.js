@@ -15,7 +15,7 @@ const db = new Pool({
     port: 5432
 })
 
-function checkToken(token) {
+function checkToken(token, res) {
     let result = jwt.verify(token, "secret", (err, decoded) => {
         if (err) { res.status(500).json(err.message) } else return decoded;
     });
@@ -32,19 +32,19 @@ app.all('*', function(req, res, next) {
 // Tasks
 
 app.get("/tasks/:list_id", async (req, res) => {
-    checkToken(req.headers.authorization);
+    checkToken(req.headers.authorization, res);
     let result = await db.query(`SELECT * FROM tasks WHERE list = $1`, [req.params.list_id]);
     res.json(result.rows);
 })
 
 app.post("/tasks/:list_id", (req, res) => {
-    checkToken(req.headers.authorization);
+    checkToken(req.headers.authorization, res);
     db.query(`INSERT INTO tasks (task, done, list) VALUES ($1, false, $2)`, [req.body.task, req.params.list_id])
     res.status(201).send("success");
 })
 
 app.patch("/tasks/:task_id", (req, res) => {
-    checkToken(req.headers.authorization);
+    checkToken(req.headers.authorization, res);
     
     db.query(`UPDATE tasks SET done = NOT done WHERE id = $1`, [req.params.task_id]);
 
@@ -52,7 +52,7 @@ app.patch("/tasks/:task_id", (req, res) => {
 })
 
 app.delete("/tasks/:task_id", (req, res) => {
-    checkToken(req.headers.authorization);
+    checkToken(req.headers.authorization, res);
 
     db.query(`DELETE FROM tasks WHERE id = $1`, [req.params.task_id]);
 
@@ -62,19 +62,19 @@ app.delete("/tasks/:task_id", (req, res) => {
 // Lists
 
 app.get("/lists", async (req, res) => {
-    let decoded = checkToken(req.headers.authorization);
+    let decoded = checkToken(req.headers.authorization, res);
     let result = await db.query(`SELECT * FROM lists WHERE user_email = $1`, [decoded.email]);
     res.json(result.rows);
 })
 
 app.post("/lists", async (req, res) => {
-    let decoded = checkToken(req.headers.authorization);
+    let decoded = checkToken(req.headers.authorization, res);
     await db.query(`INSERT INTO lists (title, user_email) VALUES ($1, $2)`, [req.body.title, decoded.email]);
     res.status(201).send("success");
 })
 
 app.patch("/lists/:id", (req, res) => {
-    checkToken(req.headers.authorization);
+    checkToken(req.headers.authorization, res);
     
     db.query(`UPDATE lists SET title = $1 WHERE id = $2`, [req.body.title, req.params.id]);
 
@@ -82,7 +82,7 @@ app.patch("/lists/:id", (req, res) => {
 })
 
 app.delete("/lists/:id", (req, res) => {
-    checkToken(req.headers.authorization);
+    checkToken(req.headers.authorization, res);
 
     db.query(`DELETE FROM lists WHERE id = $1`, [req.params.id]);
 
@@ -100,13 +100,14 @@ app.post("/users", async (req, res) => {
     } else res.status(409).send("An account with the provided email address already exists");
 })
 
-app.get("/login", async (req, res) => {
+app.post("/login", async (req, res) => {
     let result = await db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [req.body.email, req.body.password]);
-
     if (result.rows[0] !== undefined) {
         let token = jwt.sign({name: result.rows[0].name, email: result.rows[0].email}, "secret", { expiresIn: '1800s'});
         res.json({token: token});
-    } else res.sendStatus(404);
+    } else {
+        res.status(404).send('User not found');
+    }
 })
 
 app.listen(3000, () => {

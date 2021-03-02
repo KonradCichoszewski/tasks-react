@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { tryLogin } from '../redux/actions/authActions';
+import { tryGettingLists } from '../redux/actions/listsActions';
+import { tryGettingTasks } from '../redux/actions/tasksActions';
 import './Login.css';
 
 
@@ -16,10 +18,9 @@ class Login extends React.Component{
         this.logout = this.logout.bind(this);
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
         this.props.tryLogin(this.state.email, this.state.password);
-        this.setState({email: "", password: ""});
-    };
+    }
 
     logout() {
         this.props.logout();
@@ -58,4 +59,12 @@ class Login extends React.Component{
     }
 }
 
-export default connect(null, { tryLogin })(Login);
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        lists: state.lists.lists,
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps, {tryLogin, tryGettingLists, tryGettingTasks})(Login);

@@ -1,4 +1,5 @@
-import * as actions from '../actions/listsActions'
+import * as actions from '../actions/listsActions';
+import { LOGOUT } from '../actions/authActions';
 
 const initialState = {
     lists: [],
@@ -75,6 +76,8 @@ const listsReducer = ( state = initialState, action ) => {
             ...state,
             currentList: action.payload
         }
+
+        case LOGOUT: return state;
 
         default: return state;
     }
